@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Form } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Select from 'react-select';
 
 import logo from '../../assets/joole.png';
@@ -27,7 +27,7 @@ class Categories extends Component {
         return (
             <div id="categoriesComponent">
                 <br /><br /><br />
-                <img src={logo} id="logo"></img>
+                <img src={logo} id="logo" alt="Company Logo"></img>
                 <div id="logoText">
                     Building Product Selection Platform
                 </div>

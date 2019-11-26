@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
 
 import logo from '../../assets/joole.png';
@@ -156,7 +155,7 @@ class Login extends Component {
         return (
             <div id="loginComponent">
                 <br /><br /><br />
-                <img src={logo} id="logo"></img>
+                <img src={logo} id="logo" alt="Company Logo"></img>
                 <div id="logoText">
                     Building Product Selection Platform
                 </div>

@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 import Login from './containers/Login/Login';
 import Categories from './containers/Categories/Categories';
 
-//Logo and styling
-import logo from './assets/joole.png';
 import './App.css';
 
 class App extends Component {
