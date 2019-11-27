@@ -1,0 +1,69 @@
+html {
+    --sidebar-width: 150px;
+    --navbar-height: 75px;
+}
+
+#sideNav {
+    height: 100%;
+    width: var(--sidebar-width);
+    position: fixed;
+    z-index: 1;
+    top: var(--navbar-height);
+    left: 0;
+}
+
+#productResults {
+    margin-left: var(--sidebar-width);
+}
+
+/*Sidebar CSS*/
+.productSideNavHeader {
+    background-color: #EEE;
+    width: 100%;
+    text-align: left;
+}
+
+.collapsibleContent {
+
+}
+.productSidebarText {
+    display: inline-block;
+    font-size: 8px;
+}
+.productSidebarInput {
+    font-size: 8px;
+    width: 20px;
+}
+
+
+
+/*Individual Product CSS*/
+.productResultContainer {
+    display: inline-block;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    width: 105px;
+}
+.productResultImage {
+    width: 100px;
+    height: 100px;
+}
+.productResultMainInfo {
+    color: #1F4F7A;
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.productResultSubInfo {
+    background-color: #CCCCCC;
+    text-align: center;
+    font-size: 10px;
+    margin: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+

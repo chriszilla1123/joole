@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 //Components
 import Login from './containers/Login/Login';
 import Categories from './containers/Categories/Categories';
+import Products from './containers/Products/Products';
 
 import './App.css';
 
 class App extends Component {
   componentDidMount() {
-    console.log(this.props);
   }
 
   render() {
@@ -18,6 +18,7 @@ class App extends Component {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/categories" component={Categories} />
+        <Route path="/products" component={Products} />
         <Redirect to="/login" />
       </Switch>
     );

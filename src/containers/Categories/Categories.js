@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import Select from 'react-select';
@@ -13,6 +14,11 @@ class Categories extends Component {
 
         topLevelCategories: ["Mechanical"],
         subCategories: ["HVAC Fans"]
+    }
+
+    selectHandler = (event) => {
+        //After selecting a category, move to product selection page
+        this.props.history.push('/products');
     }
 
     render() {
@@ -38,7 +44,7 @@ class Categories extends Component {
                         defaultValue={categoryOptions[0]}/>
                     </span>
                     <span id="bottomSpan">
-                        <Select options={subCategoryOptions} className="bottonLevelSelect" classNamePrefix="selectElement"/>
+                        <Select options={subCategoryOptions} className="bottonLevelSelect" classNamePrefix="selectElement" onChange={(event) => this.selectHandler(event)}/>
                     </span>
                 </Container>
             </div>
@@ -47,8 +53,9 @@ class Categories extends Component {
 }
 
 const mapStateToProps = state => {
+    return {}
 }
 const mapDispatchToProps = dispatch => {
-
+    return {}
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Categories));

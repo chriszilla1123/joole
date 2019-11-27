@@ -69,7 +69,6 @@ class Login extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        console.log("Trying login...");
         let payload = {
             username: this.state.controls.user.value,
             password: this.state.controls.password.value
@@ -118,11 +117,11 @@ class Login extends Component {
     render() {
         //testing
         if(this.props.isLoggedIn){
-            //this.props.history.push('/categories');
-
-            //TODO move and test this
             //After user is logged in, key will be set. Extract key and download products
             this.props.getProducts(this.props.loginKey);
+
+            //Then redirect to category selection page
+            this.props.history.push('/categories');
         }
         else if(this.props.loginError !== null){
             let msg = this.props.loginError;
@@ -179,7 +178,7 @@ const mapStateToProps = state => {
     //Add the properties required by the login component
 
     if(state.product.products !== null){
-        console.log("Got the product list: ");
+        console.log("Got the product list in login component: ");
         console.log(state.product.products);
     }
 
