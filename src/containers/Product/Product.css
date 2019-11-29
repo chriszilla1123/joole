@@ -1,0 +1,99 @@
+/*Header Style*/
+.productDetailsImage {
+    display: inline-block;
+    width: 100px;
+}
+.productDetailsHeaderText{
+    display: inline-block;
+    color: #1F4F7A;
+    font-weight: bold;
+    font-size: 16px;
+}
+#backToCategoriesLink, #backToProductsLink {
+    display: inline-block;
+    color: #1F4F7A;
+    font-size: 12px;
+    font-weight: bold;
+}
+#productModelNumber {
+    display: inline-block;
+    color: #777;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/*Tab Style*/
+.productPageTabs{
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+.productPageTabLink {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 4px 0px;
+    transition: 0.3s;
+    width: 25%;
+    font-size: 10px;
+    text-align: center;
+}
+.productPageTabLink:hover {
+    background-color: #ddd;
+}
+.productPageTabLink.active {
+    background-color: #777;
+    color: white;
+    font-weight: bold;
+}
+.productPageTabContent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    font-size: 10px;
+}
+.thickHr {
+    height: 1px;
+    background-color: #aaa;
+    padding: 0px;
+    margin: 0px;
+}
+.thinHr {
+    padding: 0px;
+    margin: 0px;
+}
+.extraBr {
+    display: inline-block;
+    height: 21px;
+}
+.split {
+    /*For splitting 2 spans in half*/
+    display: inline-block;
+    width: 49%;
+    margin-right: 5px;
+}
+.productDetailsSubheaderText {
+    padding-left: 5px;
+    margin: 0px 0px;
+}
+.productPageDescriptionLable {
+    display: inline-block;
+    width: 35%;
+    background-color: #EEE;
+    padding-left: 5px;
+    padding-bottom: 2px;
+}
+.productPageDescriptionText {
+    display: inline-block;
+    width: 65%;
+    padding-left: 5px;
+}
+.darkerBackground {
+    background-color: #ddd;
+}
+.forceFullWidth {
+    width: 100%;
+}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-//import { Container } from 'react-bootstrap';
 
 import './Products.css';
 import ProductNavbar from './../../components/ProductNavbar/ProductNavbar';
@@ -9,6 +8,8 @@ import fan1 from './../../assets/fan1.jpg';
 import fan2 from './../../assets/fan2.jpg';
 import fan3 from './../../assets/fan3.jpg';
 import fan4 from './../../assets/fan4.jpg';
+import { Button } from 'react-bootstrap';
+import { blockStatement } from '@babel/types';
 
 class Products extends Component {
     state = {
@@ -28,7 +29,7 @@ class Products extends Component {
                 "productDiameter": "60",
                 "productMounting": "Roof",
                 "productAccessories": "With",
-                "productDetails": "Strong Construction | Made in the USSR",
+                "productDetails": "Made in the USA | Exceeds ENERGY STAR fan efficiency requirements | Motor - EC motor with digital inverter drive | Controls - Remote control included | Environment - Indoor use only",
                 "productContactName": "John Johnson",
                 "productContactPhone": "+1 234 567 8910",
                 "productContactEmail": "john@emerson.com",
@@ -53,7 +54,7 @@ class Products extends Component {
                 "productDiameter": "60",
                 "productMounting": "Roof",
                 "productAccessories": "Without",
-                "productDetails": "Remote Control Included | Steel Mounting Hardware | Made in the USA",
+                "productDetails": "Made in the USA | Exceeds ENERGY STAR fan efficiency requirements | Motor - EC motor with digital inverter drive | Controls - Remote control included | Environment - Indoor use only",
                 "productContactName": "Jimmy Jameson",
                 "productContactPhone": "+1 234 567 8910",
                 "productContactEmail": "jimmy@minka.com",
@@ -78,7 +79,7 @@ class Products extends Component {
                 "productDiameter": "56",
                 "productMounting": "Wall",
                 "productAccessories": "With",
-                "productDetails": "Wall Mounting Hardware Included | Onboard Sensors - Detect Temperature | Made in the USSR",
+                "productDetails": "Made in the USA | Exceeds ENERGY STAR fan efficiency requirements | Motor - EC motor with digital inverter drive | Controls - Remote control included | Environment - Suitible for indoor and outdoor use",
                 "productContactName": "Sean Ranklin",
                 "productContactPhone": "+1 234 567 8910",
                 "productContactEmail": "sean@westinghouse.com",
@@ -103,7 +104,7 @@ class Products extends Component {
                 "productDiameter": "60",
                 "productMounting": "Free Standing",
                 "productAccessories": "Without",
-                "productDetails": "Free-Standing Mounting Hardware Included | Effecient LED lights | Made in the USA",
+                "productDetails": "Made in the USA | Exceeds ENERGY STAR fan efficiency requirements | Motor - EC motor with digital inverter drive | Hardware - Includes free-standing hardware mount | Environment - Indoor use only ",
                 "productContactName": "Joe Richardson",
                 "productContactPhone": "+1 234 567 8910",
                 "productContactEmail": "joe@bigass.com",
@@ -113,15 +114,186 @@ class Products extends Component {
                 "productContactEmail2": "tech@bigass.com",
                 "productContactWeb2": "bigass.com/support"
             }
-        ]
+        ],
+        search: {
+            minYear: 2017,
+            maxYear: 2019,
+            minAirflow: 5467,
+            maxAirflow: 8500,
+            minPower: 22,
+            maxPower: 60,
+            minSound: 35,
+            maxSound: 48,
+            minDiameter: 56,
+            maxDiameter: 60,
+        },
+        //The products that should be shown on screen, updated by the search() called by searchUpdateHandler()
+        searchList: [0, 1, 2, 3]
     }
 
     productClicked(index){
-        console.log("clicked product: " + index);
+        this.props.history.push('/product/' + index);
+    }
+
+    resetSearch(){
+        let defaultSearch = {
+            minYear: 2017,
+            maxYear: 2019,
+            minAirflow: 5467,
+            maxAirflow: 8500,
+            minPower: 22,
+            maxPower: 60,
+            minSound: 35,
+            maxSound: 48,
+            minDiameter: 56,
+            maxDiameter: 60,
+        }
+        this.setState({search: defaultSearch}, () => { this.search() });
+    }
+
+    searchUpdateHandler(e){
+        let newSearch = {
+            ...this.state.search
+        }
+        switch(e.target.getAttribute('statename')){
+            case 'minYear': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.minYear = 0; }
+                    else{ newSearch.minYear = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Year must be a number');
+                }
+                break;
+            }
+            case 'maxYear': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.maxYear = 0; }
+                    else{ newSearch.maxYear = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Year must be a number');
+                }
+                break;
+            }
+            case 'minAirflow': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.minAirflow = 0; }
+                    else{ newSearch.minAirflow = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Airflow CFM must be a number');
+                }
+                break;
+            }
+            case 'maxAirflow': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.maxAirflow = 0; }
+                    else{ newSearch.maxAirflow = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Airflow CFM must be a number');
+                }
+                break;
+            }
+            case 'minPower': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.minPower = 0; }
+                    else{ newSearch.minPower = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Power Watts must be a number');
+                }
+                break;
+            }
+            case 'maxPower': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.maxPower = 0; }
+                    else{ newSearch.maxPower = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Power Watts must be a number');
+                }
+                break;
+            }
+            case 'minSound': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.minSound = 0; }
+                    else{ newSearch.minSound = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Sound dBA must be a number');
+                }
+                break;
+            }
+            case 'maxSound': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.maxSound = 0; }
+                    else{ newSearch.maxSound = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Sound dBA must be a number');
+                }
+                break;
+            }
+            case 'minDiameter': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.minDiameter = 0; }
+                    else{ newSearch.minDiameter = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Diameter must be a number');
+                }
+                break;
+            }
+            case 'maxDiameter': {
+                if(!isNaN(e.target.value)){
+                    if(e.target.value.trim() === ""){ newSearch.maxDiameter = 0; }
+                    else{ newSearch.maxDiameter = parseInt(e.target.value); }
+                    this.setState({search: newSearch}, () => { this.search() });
+                }
+                else{
+                    alert('Diameter must be a number');
+                }
+                break;
+            }
+            default: {}
+        }
     }
 
     search(){
         //Should return the list of product indexes that match the search results
+        let newSearchList = [];
+        let search = this.state.search;
+        console.log(search);
+        this.state.productList.forEach((product, index) => {
+            let shouldShowProduct = true;
+            if(product.productYear < search.minYear){ shouldShowProduct = false;}
+            if(product.productYear > search.maxYear){ shouldShowProduct = false;}
+            if(product.productCFM < search.minAirflow){ shouldShowProduct = false;}
+            if(product.productCFM > search.maxAirflow){ shouldShowProduct = false;}
+            if(product.productWatts < search.minPower){ shouldShowProduct = false;}
+            if(product.productWatts > search.maxPower){ shouldShowProduct = false;}
+            if(product.productSound < search.minSound){ shouldShowProduct = false;}
+            if(product.productSound > search.maxSound){ shouldShowProduct = false;}
+            if(product.productDiameter < search.minDiameter){ shouldShowProduct = false;}
+            if(product.productDiameter > search.maxDiameter){ shouldShowProduct = false;}
+
+            if(shouldShowProduct){
+                newSearchList.push(index);
+            }
+        });
+
+        this.setState({searchList: newSearchList});
     }
 
     renderProduct(index){
@@ -144,10 +316,11 @@ class Products extends Component {
 
     renderProducts(){
         //Compiles the HTML from all the products
+        let productsToShow = this.state.searchList;
         let products = [];
-        for(let i=1; i <= 5; i++){
+        for(let i=0; i < productsToShow.length; i++){
             products.push(
-                <div>{this.renderProduct(i)}</div>
+                <span key={productsToShow[i]}>{this.renderProduct(productsToShow[i])}</span>
             );
         }
         return products;
@@ -163,13 +336,18 @@ class Products extends Component {
             <div id="productsComponent">
                 <ProductNavbar username={username}/>
                 <div id="sideNav">
+                    <span>
+                        <p style={{display: "inline-block"}}>Search:&nbsp;&nbsp;&nbsp;</p>
+                        <Button size="sm" onClick={() => this.resetSearch()} style={{fontSize: 10 + "px"}}>reset</Button>
+                    </span>
                     <div className="collapsible productSideNavHeader">Product Type</div>
                     <div className="collapsibleContent" id="productTypeDetails">
                         <span>
                             <p className="productSidebarText">Model year: &nbsp;&nbsp;</p>
-                            <input type="text" className="productSidebarInput"></input>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" className="productSidebarInput" value={this.state.search.minYear} statename="minYear" onChange={(e) => this.searchUpdateHandler(e)}></input>
                             -
-                            <input type="text" className="productSidebarInput"></input>
+                            <input type="text" className="productSidebarInput" value={this.state.search.maxYear} statename="maxYear" onChange={(e) => this.searchUpdateHandler(e)}></input>
                         </span>
                     </div>
 
@@ -177,46 +355,38 @@ class Products extends Component {
                     <div className="collapsibleContent" id="technicalSpecificationsDetails">
                         <span>
                             <p className="productSidebarText">Airflow (CFM): &nbsp;&nbsp;</p>
-                            <input type="text" className="productSidebarInput"></input>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" className="productSidebarInput"  value={this.state.search.minAirflow} statename="minAirflow" onChange={(e) => this.searchUpdateHandler(e)}></input>
                             -
-                            <input type="text" className="productSidebarInput"></input>
+                            <input type="text" className="productSidebarInput" value={this.state.search.maxAirflow} statename="maxAirflow" onChange={(e) => this.searchUpdateHandler(e)}></input>
                         </span>
                         <br />
                         <span>
                             <p className="productSidebarText">Max Power (W): &nbsp;&nbsp;</p>
-                            <input type="text" className="productSidebarInput"></input>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" className="productSidebarInput" value={this.state.search.minPower} statename="minPower" onChange={(e) => this.searchUpdateHandler(e)}></input>
                             -
-                            <input type="text" className="productSidebarInput"></input>
+                            <input type="text" className="productSidebarInput" value={this.state.search.maxPower} statename="maxPower" onChange={(e) => this.searchUpdateHandler(e)}></input>
                         </span>
                         <br />
                         <span>
                             <p className="productSidebarText">Max Sound (dBA): &nbsp;&nbsp;</p>
-                            <input type="text" className="productSidebarInput"></input>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" className="productSidebarInput" value={this.state.search.minSound} statename="minSound" onChange={(e) => this.searchUpdateHandler(e)}></input>
                             -
-                            <input type="text" className="productSidebarInput"></input>
+                            <input type="text" className="productSidebarInput" value={this.state.search.maxSound} statename="maxSound" onChange={(e) => this.searchUpdateHandler(e)}></input>
                         </span>
                         <br />
                         <span>
                             <p className="productSidebarText">Fan Sweep Diameter (in): &nbsp;&nbsp;</p>
-                            <input type="text" className="productSidebarInput"></input>
+                            <input type="text" className="productSidebarInput" value={this.state.search.minDiameter} statename="minDiameter" onChange={(e) => this.searchUpdateHandler(e)}></input>
                             -
-                            <input type="text" className="productSidebarInput"></input>
+                            <input type="text" className="productSidebarInput" value={this.state.search.maxDiameter} statename="maxDiameter" onChange={(e) => this.searchUpdateHandler(e)}></input>
                         </span>
                     </div>
                 </div>
                 <div id="productResults">
-                    {this.renderProduct(0)}
-                    {this.renderProduct(1)}
-                    {this.renderProduct(2)}
-                    {this.renderProduct(3)}
-
-                    {this.renderProduct(3)}
-
-                    {this.renderProduct(3)}
-                    {this.renderProduct(3)}
-                    {this.renderProduct(3)}
-                    {this.renderProduct(3)}
-
+                    {this.renderProducts()}
                 </div>
             </div>
         )
